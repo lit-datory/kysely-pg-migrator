@@ -3,9 +3,14 @@
   "author": "tbosmans",
   "version": "0.0.1",
   "description": "Created with create-ts-starter",
+  "bin": {
+    "kysely-pg-migrator-node": "dist/node.js",
+    "kysely-pg-migrator-tsx": "dist/tsx.js",
+    "kysely-pg-migrator-tsnode": "dist/tsNode.js"
+  },
   "scripts": {
-    "build": "tsc",
-    "start": "node -r ts-node/register --env-file=.env.dev src/index.ts",
+    "build": "tsup src/node.ts src/tsx.ts src/tsNode.ts",
+    "start": "npm run build -- --watch",
     "start:prod": "node dist/index.js",
     "shell": "node -r ts-node/register",
     "test": "node -r ts-node/register --env-file=.env.test --test **/*.spec.ts",
@@ -20,6 +25,7 @@
     "@swc/helpers": "^0.5.8",
     "@tsconfig/node20": "^20.1.4",
     "@types/node": "^20.12.4",
+    "@types/pg": "^8.11.5",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
@@ -27,10 +33,13 @@
     "prettier": "3.2.5",
     "regenerator-runtime": "^0.14.1",
     "ts-node": "^10.9.2",
+    "tsup": "^8.0.2",
     "typescript": "^5.4.4",
     "typescript-eslint": "^7.6.0"
   },
   "dependencies": {
-    "commander": "^12.0.0"
+    "commander": "^12.0.0",
+    "kysely": "^0.27.3",
+    "pg": "^8.11.5"
   }
 }

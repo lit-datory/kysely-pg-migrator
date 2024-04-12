@@ -7,3 +7,16 @@ services:
       - 3000:3000
     volumes:
       - .:/app
+
+  postgres:
+    container_name: ${APP_NAME}_postgres
+    image: postgres:16.2
+    env_file:
+      - .env
+    ports:
+      - ${POSTGRES_PORT}:5432
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+volumes:
+  postgres:

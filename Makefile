@@ -21,3 +21,6 @@ shell:
 
 install:
 	@docker compose run --rm --no-deps app sh -c "npm install"
+
+psql:
+	@docker compose exec postgres sh -c "su - postgres -c 'psql $(db)'"
