@@ -2,7 +2,7 @@
   "name": "kysely-pg-migrator",
   "author": "tbosmans",
   "version": "0.0.1",
-  "description": "Created with create-ts-starter",
+  "description": "CLI for kysely migrator with pg.",
   "bin": {
     "kysely-pg-migrator-node": "dist/node.js",
     "kysely-pg-migrator-tsx": "dist/tsx.js",
