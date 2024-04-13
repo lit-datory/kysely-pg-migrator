@@ -8,4 +8,6 @@ export default [
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   eslintPluginPrettierRecommended,
+  { files: ["src/**/*"] },
+  { ignores: ["dist/**/*"] },
 ]
