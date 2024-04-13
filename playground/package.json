@@ -1,0 +1,36 @@
+{
+  "name": "basic",
+  "author": "",
+  "version": "0.0.1",
+  "description": "Created with create-ts-starter",
+  "scripts": {
+    "db:generate": "kysely-pg-migrator-tsnode generate --env=.env --migrations=src/db",
+    "db:up": "kysely-pg-migrator-tsnode up --env=.env --migrations=src/db --database=playground",
+    "db:down": "kysely-pg-migrator-tsnode down --env=.env --migrations=src/db --database=playground",
+    "db:up:prod": "kysely-pg-migrator-node up --env=.env --migrations=dist/db --database=playground",
+    "db:down:prod": "kysely-pg-migrator-node down --env=.env --migrations=dist/db --database=playground",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "@swc/core": "^1.4.12",
+    "@swc/helpers": "^0.5.8",
+    "@tsconfig/node20": "^20.1.4",
+    "@types/node": "^20.12.4",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "globals": "^15.0.0",
+    "prettier": "3.2.5",
+    "regenerator-runtime": "^0.14.1",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.7.2",
+    "typescript": "^5.4.4",
+    "typescript-eslint": "^7.6.0"
+  },
+  "dependencies": {
+    "kysely-pg-migrator": "file:.."
+  }
+}
