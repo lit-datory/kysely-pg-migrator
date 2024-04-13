@@ -4,7 +4,7 @@ import buildMigrator from "../utils/buildMigrator"
 import logMigrationResult from "../utils/logMigrationResult"
 import buildConfig from "../utils/buildConfig"
 
-export default function migrateUp(program: Command) {
+export default function up(program: Command) {
   return program
     .command("up")
     .description("Runs the migrations")
@@ -16,9 +16,7 @@ export default function migrateUp(program: Command) {
         port: Number(config.port),
         user: config.user,
       })
-      console.log(1)
       const migrator = buildMigrator(db, config)
-      console.log(2)
       const result = await migrator.migrateToLatest()
       logMigrationResult(result)
       await db.destroy()

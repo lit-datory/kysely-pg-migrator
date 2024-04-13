@@ -9,7 +9,7 @@ export default function buildMigrator(db: Kysely<unknown>, config: Config) {
     provider: new FileMigrationProvider({
       fs,
       path,
-      migrationFolder: path.join(config.migrations),
+      migrationFolder: path.resolve(config.migrations),
     }),
   })
 

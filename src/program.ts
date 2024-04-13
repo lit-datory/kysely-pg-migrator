@@ -1,7 +1,8 @@
 import { Command } from "commander"
 import packageJson from "../package.json"
-import generateMigration from "./commands/generateMigration"
-import migrateUp from "./commands/migrateUp"
+import generate from "./commands/generate"
+import up from "./commands/up"
+import down from "./commands/down"
 
 const program = new Command()
 
@@ -16,7 +17,8 @@ program
   .option("-m, --migrations <folder>", "Specify the migration folder")
   .option("-e, --env <envfile>", "Specify the path to the environment file")
 
-generateMigration(program)
-migrateUp(program)
+generate(program)
+up(program)
+down(program)
 
 export default program

@@ -3,7 +3,7 @@ import fs from "fs"
 import { Command } from "commander"
 import buildConfig from "../utils/buildConfig"
 
-export default function generateMigration(program: Command) {
+export default function generate(program: Command) {
   const templateFolder = path.resolve(__dirname, "..", "./templates")
   const templateFile = fs.readFileSync(`${templateFolder}/migration.template`)
 
@@ -14,7 +14,6 @@ export default function generateMigration(program: Command) {
     .action((name: string) => {
       const config = buildConfig(program)
       const migrationFolder = path.join(config.migrations)
-      console.log(migrationFolder)
       const mkdir = () => fs.mkdirSync(migrationFolder)
       const dateStr = new Date().toISOString().replace(/[-:]/g, "").split(".")[0]
       const fileName = `${migrationFolder}/${dateStr}-${name}.ts`
