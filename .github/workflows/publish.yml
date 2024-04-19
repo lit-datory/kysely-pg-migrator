@@ -1,0 +1,82 @@
+name: Publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      version-type:
+        type: choice
+        description: Version type
+        options: 
+        - patch
+        - minor
+        - major
+
+jobs:
+  bump_version:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: master
+
+      - name: Update version in package.json.
+        uses: 'phips28/gh-action-bump-version@master'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          version-type:  ${{github.event.inputs.version-type}}
+
+  publish:
+    needs: bump_version
+    runs-on: ubuntu-latest
+    if: ${{ needs.bump_version.result == 'success' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: master
+
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20.x'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies and build 🔧
+        run: npm ci && npm run build
+
+      - name: Publish package 📦
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
+  create_release:
+    needs: publish
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    if: ${{ needs.publish.result == 'success' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: master
+
+      - name: Get version from package.json
+        id: get_version
+        run: echo "::set-output name=version::$(node -p -e "require('./package.json').version")"
+
+      - name: Create GitHub release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.get_version.outputs.version }}
+          release_name: Release ${{ steps.get_version.outputs.version }}
+          body: |
+            This is the release for version ${{ steps.get_version.outputs.version }}.
+          draft: false
+          prerelease: false

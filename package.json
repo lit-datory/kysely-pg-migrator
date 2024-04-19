@@ -3,6 +3,10 @@
   "author": "tbosmans",
   "version": "0.0.1",
   "description": "CLI for kysely migrator with pg.",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/lit-datory/kysely-pg-migrator.git"
+  },
   "bin": {
     "kysely-pg-migrator-node": "dist/node.js",
     "kysely-pg-migrator-tsx": "dist/tsx.js",
@@ -15,7 +19,8 @@
     "shell": "node -r ts-node/register",
     "test": "node -r ts-node/register --env-file=.env.test --test **/*.spec.ts",
     "lint": "eslint . --max-warnings 0 --report-unused-disable-directives",
-    "lint:fix": "npm run lint -- --fix"
+    "lint:fix": "npm run lint -- --fix",
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [],
   "license": "ISC",
