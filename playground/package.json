@@ -4,12 +4,15 @@
   "version": "0.0.1",
   "description": "Created with create-ts-starter",
   "scripts": {
-    "db:generate": "kysely-pg-migrator-tsnode generate --env=.env --migrations=src/db",
-    "db:up": "kysely-pg-migrator-tsnode up --env=.env --migrations=src/db --database=playground",
-    "db:down": "kysely-pg-migrator-tsnode down --env=.env --migrations=src/db --database=playground",
-    "db:up:prod": "kysely-pg-migrator-node up --env=.env --migrations=dist/db --database=playground",
-    "db:down:prod": "kysely-pg-migrator-node down --env=.env --migrations=dist/db --database=playground",
-    "build": "tsc"
+    "db:generate": "kysely-pg-migrator-tsnode generate --env=.env --folder=src/db",
+    "db:up": "kysely-pg-migrator-tsnode up --env=.env --folder=src/db --database=playground",
+    "db:down": "kysely-pg-migrator-tsnode down --env=.env --folder=src/db --database=playground",
+    "db:dump": "kysely-pg-migrator-tsnode dump --env=.env --folder=src/db --database=playground",
+    "db:codegen": "kysely-pg-migrator-tsnode codegen --env=.env --folder=src/db --database=playground",
+    "db:up:prod": "kysely-pg-migrator-node up --env=.env --folder=dist/db --database=playground",
+    "db:down:prod": "kysely-pg-migrator-node down --env=.env --folder=dist/db --database=playground",
+    "build": "tsc",
+    "start": "ts-node src/index.ts"
   },
   "keywords": [],
   "license": "ISC",

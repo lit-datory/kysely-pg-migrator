@@ -3,6 +3,8 @@ services:
     container_name: ${APP_NAME}
     stdin_open: true
     build: .
+    depends_on:
+      - postgres
     ports:
       - 3000:3000
     volumes:
