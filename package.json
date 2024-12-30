@@ -43,7 +43,7 @@
     "typescript-eslint": "^8.0.0"
   },
   "dependencies": {
-    "commander": "^12.0.0",
+    "commander": "^13.0.0",
     "kysely": "^0.27.3",
     "kysely-codegen": "^0.17.0",
     "pg": "^8.11.5"
